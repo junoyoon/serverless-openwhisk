@@ -6,8 +6,7 @@ const JSZip = require("jszip")
 class Swift extends BaseRuntime {
   constructor (serverless) {
     super(serverless)
-    this.kind = 'swift'
-    this.extension = '.swift'
+    this.kind = 'java'
   }
 
   convertHandlerToPath (functionHandler) {
@@ -28,10 +27,10 @@ class Swift extends BaseRuntime {
   processActionPackage (handlerFile, zip) {
     return zip.file(handlerFile).async('nodebuffer').then(data => {
       if (this.isBuildPath(handlerFile)) {
-        zip = new JSZip()
+        zip = new JSZip();
         return zip.file('.build/release/Action', data)
       }
-      zip.remove(handlerFile)
+      zip.remove(handlerFile);
       return zip.file('main.swift', data)
     })
   }

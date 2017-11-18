@@ -7,6 +7,8 @@ const Python = require('./python')
 const Swift = require('./swift')
 const Php = require('./php')
 const Sequence = require('./sequence')
+const GradleJava = require('./gradle-java')
+
 
 class Runtimes {
   constructor(serverless) {
@@ -17,8 +19,9 @@ class Runtimes {
       new Node(serverless),
       new Python(serverless),
       new Swift(serverless),
+      new GradleJava(serverless),
       new Php(serverless),
-      new Sequence(serverless)
+      new Sequence(serverless),
     ];
   }
  
